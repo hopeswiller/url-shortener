@@ -240,9 +240,8 @@ export default {
 .workshop {
   margin-top: 2.5%;
 }
-.btn-custom{
-    background-color: #d46c27;
-    color:white;
+.btn-custom {
+  background-color: #d46c27;
+  color: white;
 }
-
 </style>

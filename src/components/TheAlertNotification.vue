@@ -1,6 +1,6 @@
 <template>
   <div :class="msgtype" role="alert" id="notify">
-    <strong>{{ alerttype.toUpperCase() || 'INFO' }}!</strong> {{ msgContent }}
+    <strong>{{ alerttype.toUpperCase() || "INFO" }}!</strong> {{ msgContent }}
     <button
       type="button"
       class="btn-close"
@@ -38,7 +38,9 @@ export default {
   },
   computed: {
     msgtype() {
-      return `alert alert-${this.alerttype || 'info'} alert-dismissible fade show`;
+      return `alert alert-${
+        this.alerttype || "info"
+      } alert-dismissible fade show`;
     },
     msgContent() {
       if (this.alerttype === "success") {

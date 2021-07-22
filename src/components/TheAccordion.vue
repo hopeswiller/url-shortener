@@ -20,7 +20,9 @@
         aria-labelledby="flush-headingTwo"
         data-bs-parent="#accordionFlush"
       >
-        <div class="accordion-body" style="text-align: left"><slot name="content"></slot></div>
+        <div class="accordion-body" style="text-align: left">
+          <slot name="content"></slot>
+        </div>
       </div>
     </div>
   </div>

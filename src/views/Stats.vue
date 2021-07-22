@@ -8,7 +8,6 @@
     <!-- <TheAccordion>Summr</TheAccordion> -->
     <!-- <TheAccordion name="content">body</TheAccordion> -->
 
-
     <!-- <br> -->
     <div class="accordion" id="accordionFlush">
       <!-- start of links -->
@@ -47,7 +46,7 @@
               ><a :href="_stats.info.long_url">{{
                 _stats.info.short_url
               }}</a></span
-            ><br>
+            ><br />
             <span><b>Created At: </b>{{ _stats.info.created_at }}</span>
             <br />
           </div>
@@ -124,7 +123,6 @@
       </div>
     </div>
 
-
     <!-- <router-link
       :to="{
         name: 'Workshop',
@@ -198,7 +196,7 @@ export default {
   font-size: 40px;
 }
 
-#accordionFlush{
-    padding-bottom: 20px
+#accordionFlush {
+  padding-bottom: 20px;
 }
 </style>
