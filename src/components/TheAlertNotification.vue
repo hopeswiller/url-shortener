@@ -1,6 +1,6 @@
 <template>
-  <div :class="msgtype" role="alert">
-    <strong>{{ alerttype.toUpperCase() }}!</strong> {{ msgContent }}
+  <div :class="msgtype" role="alert" id="notify">
+    <strong>{{ alerttype.toUpperCase() || 'INFO' }}!</strong> {{ msgContent }}
     <button
       type="button"
       class="btn-close"
@@ -30,19 +30,38 @@ export default {
       type: String,
       required: false,
     },
+    mod: {
+      type: String,
+      required: false,
+      default: "shorten",
+    },
   },
   computed: {
     msgtype() {
-      return `alert alert-${this.alerttype} alert-dismissible fade show px-10`;
+      return `alert alert-${this.alerttype || 'info'} alert-dismissible fade show`;
     },
     msgContent() {
-      return this.alerttype == "success"
-        ? `Url converted to ${this.url}`
-        : `Sorry URL failed to convert to short format, try again please..`;
+      if (this.alerttype === "success") {
+        if (this.url != "") {
+          return `Url converted to ${this.url}`;
+        } else if (this.mod === "delete") {
+          return "Your request has been accepted for processing..";
+        } else if (this.mod === "stats") {
+          return "Stats show below..";
+        } else {
+          return "...";
+        }
+      } else {
+        return `Action failed, try again please`;
+      }
     },
   },
   methods: {},
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+#notify {
+  margin: 10px;
+}
+</style>

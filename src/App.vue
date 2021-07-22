@@ -4,15 +4,18 @@
     <!-- <router-link to="/">Home</router-link> | -->
     <!-- <router-link to="/about">About</router-link> -->
     <router-view />
+    <TheFooter />
   </div>
 </template>
 
 <script>
 import TheNavigationBar from "@/components/TheNavigationBar.vue";
+import TheFooter from "@/components/TheFooter.vue";
 
 export default {
   components: {
     TheNavigationBar,
+    TheFooter,
   },
 };
 </script>

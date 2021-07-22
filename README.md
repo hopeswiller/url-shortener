@@ -1,6 +1,7 @@
-# url-shortener
+# Url Shortener
 
-A Url Shortener built with VUe.js
+A Url Shortener built with Vuejs with the functionalities of shortening, expanding, deleting and getting statistics of urls. 
+The project is nicknamed  **faciocompendi**
 
 
 ## Project setup
@@ -30,3 +31,8 @@ npm run lint
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+
+### Status
+
+_in progress_

@@ -3,7 +3,7 @@
     <div class="container">
       <div class="navbar-header">
         <router-link class="navbar-brand" :to="{ name: 'Home' }"
-          >YetToName</router-link
+          >facio<strong>compendi</strong></router-link
         >
       </div>
       <button
@@ -27,13 +27,26 @@
               >Home</router-link
             >
           </li>
+          <li v-for="item in items" :key="item">
+            <router-link
+              class="nav-link"
+              aria-current="page"
+              :to="{
+                name: 'Workshop',
+                params: {
+                  mod: item.name.toLowerCase(),
+                },
+              }"
+              >{{ item.name }}</router-link
+            >
+          </li>
           <li class="nav-item">
             <router-link
               class="nav-link disabled"
               :to="{ name: 'About' }"
               tabindex="-1"
               aria-disabled="true"
-              >Disabled</router-link
+              >About</router-link
             >
           </li>
         </ul>
@@ -42,12 +55,23 @@
   </nav>
 </template>
 
+<script>
+import Store from "@/assets/store.js";
+export default {
+  data() {
+    return {
+      items: Store.functionalities,
+    };
+  },
+};
+</script>
+
 <style scoped>
 #nav a {
   font-weight: bold;
   color: #2c3e50;
 }
 #nav a.router-link-exact-active {
-  color: #8ebea9;
+  color: #d46c27;
 }
 </style>

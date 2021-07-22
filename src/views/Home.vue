@@ -14,7 +14,7 @@
           params: { mod: 'shorten' },
         }"
       >
-        <button class="btn btn-bg btn-success">Get Started</button>
+        <button class="btn btn-lg btn-outline-success">Get Started</button>
       </router-link>
     </div>
     <div class="container">
@@ -27,7 +27,6 @@
               type="email"
               class="form-control"
               placeholder="Subscribe to receive updates via email..."
-              v-model="long_url"
             />
             <div class="input-group-append">
               <span class="input-group-text" id="basic-addon2"
@@ -58,7 +57,7 @@
                   },
                 }"
               >
-                <button :class="mod.btnStyle" type="button">Explore..</button>
+                <button :class="mod.btnStyle" type="button">explore...</button>
               </router-link>
             </div>
           </div>
@@ -70,14 +69,14 @@
 
 <script>
 // @ is an alias to /src
-import functionalities from "@/assets/functionalities.js";
+import Store from "@/assets/store.js";
 
 export default {
   name: "Home",
   components: {},
   data() {
     return {
-      mods: functionalities.functionalities,
+      mods: Store.functionalities,
     };
   },
   methods: {},
@@ -86,7 +85,9 @@ export default {
 
 <style scoped>
 #banner {
-  /* padding: 50px 0px; */
-  margin-top: 3%;
+  margin-top: 2.5%;
+}
+.home {
+  margin-bottom: 10%;
 }
 </style>
