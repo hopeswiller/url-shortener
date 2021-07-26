@@ -11,7 +11,7 @@
           aria-expanded="false"
           aria-controls="flush-collapseTwo"
         >
-          <slot></slot>
+          <slot name="header"></slot>
         </button>
       </h2>
       <div
@@ -20,7 +20,7 @@
         aria-labelledby="flush-headingTwo"
         data-bs-parent="#accordionFlush"
       >
-        <div class="accordion-body" style="text-align: left">
+        <div class="accordion-body" :style="alignment">
           <slot name="content"></slot>
         </div>
       </div>
@@ -33,12 +33,22 @@ export default {
   data() {
     return {};
   },
-  props: ["header", "body"],
+  props: {
+    textAlign: {
+      type: String,
+      default: "left",
+    },
+  },
+  computed: {
+    alignment(){
+      return `text-align: ${this.textAlign}`
+    }
+  },
 };
 </script>
 
 <style scoped>
-#accordionFlush {
-  padding-bottom: 20px;
-}
+/* #accordionFlush { */
+/* padding-bottom: 20px; */
+/* } */
 </style>

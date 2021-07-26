@@ -238,7 +238,7 @@ export default {
 
 <style scoped>
 .workshop {
-  margin-top: 2.5%;
+  margin-top: 2.22%;
 }
 .btn-custom {
   background-color: #d46c27;

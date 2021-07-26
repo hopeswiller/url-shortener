@@ -5,97 +5,49 @@
     <h2>Stats</h2>
 
     <!-- <p>{{ _stats }}</p> -->
-    <!-- <TheAccordion>Summr</TheAccordion> -->
-    <!-- <TheAccordion name="content">body</TheAccordion> -->
+    <TheAccordion>
+      <template v-slot:header>Summary</template>
+      <template v-slot:content>
+        <span><b>Name: </b>{{ _stats.info.created_by }}</span
+        ><br />
+        <span><b>Email: </b>{{ _stats.info.email }}</span
+        ><br />
+        <span
+          ><b>Long Version: </b>
+          <a :href="_stats.info.long_url">{{ _stats.info.long_url }}</a></span
+        ><br />
+        <span
+          ><b>Short Version: </b
+          ><a :href="_stats.info.long_url">{{ _stats.info.short_url }}</a></span
+        ><br />
+        <span><b>Created At: </b>{{ _stats.info.created_at }}</span>
+        <br />
+      </template>
+    </TheAccordion>
 
-    <!-- <br> -->
-    <div class="accordion" id="accordionFlush">
-      <!-- start of links -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingTwo">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseTwo"
-            aria-expanded="false"
-            aria-controls="flush-collapseTwo"
-          >
-            Summary
-          </button>
-        </h2>
-        <div
-          id="flush-collapseTwo"
-          class="accordion-collapse collapse"
-          aria-labelledby="flush-headingTwo"
-          data-bs-parent="#accordionFlush"
-        >
-          <div class="accordion-body" style="text-align: left">
-            <span><b>Name: </b>{{ _stats.info.created_by }}</span
-            ><br />
-            <span><b>Email: </b>{{ _stats.info.email }}</span
-            ><br />
-            <span
-              ><b>Long Version: </b>
-              <a :href="_stats.info.long_url">{{
-                _stats.info.long_url
-              }}</a></span
-            ><br />
-            <span
-              ><b>Short Version: </b
-              ><a :href="_stats.info.long_url">{{
-                _stats.info.short_url
-              }}</a></span
-            ><br />
-            <span><b>Created At: </b>{{ _stats.info.created_at }}</span>
-            <br />
-          </div>
-        </div>
-      </div>
-      <!-- start of creation -->
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingThree">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#flush-collapseThree"
-            aria-expanded="false"
-            aria-controls="flush-collapseThree"
-          >
-            More Information
-          </button>
-        </h2>
-        <div
-          id="flush-collapseThree"
-          class="accordion-collapse collapse"
-          aria-labelledby="flush-headingThree"
-          data-bs-parent="#accordionFlush"
-        >
-          <div class="accordion-body" style="text-align: left">
-            <span><b>Browsers : </b></span>
-            <ul>
-              <li v-for="browser in _stats.browsers" :key="browser">
-                {{ browser.browser }} with {{ browser.total }} number of clicks
-              </li>
-            </ul>
-            <span><b>Platforms : </b></span>
-            <ul>
-              <li v-for="platform in _stats.platforms" :key="platform">
-                {{ platform.platform }} with {{ platform.total }} number of
-                clicks
-              </li>
-            </ul>
-            <span><b>Countries : </b></span>
-            <ul>
-              <li v-for="country in _stats.countries" :key="country">
-                {{ country.country_code }}
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+    <TheAccordion>
+      <template v-slot:header>More Information</template>
+      <template v-slot:content>
+        <span><b>Browsers : </b></span>
+        <ul>
+          <li v-for="browser in _stats.browsers" :key="browser">
+            {{ browser.browser }} with {{ browser.total }} number of clicks
+          </li>
+        </ul>
+        <span><b>Platforms : </b></span>
+        <ul>
+          <li v-for="platform in _stats.platforms" :key="platform">
+            {{ platform.platform }} with {{ platform.total }} number of clicks
+          </li>
+        </ul>
+        <span><b>Countries : </b></span>
+        <ul>
+          <li v-for="country in _stats.countries" :key="country">
+            {{ country.country_code }}
+          </li>
+        </ul>
+      </template>
+    </TheAccordion>
 
     <div class="row">
       <div class="col-md-6 mt-10">
@@ -138,7 +90,7 @@
 
 <script>
 import { onMounted } from "vue";
-// import TheAccordion from "@/components/TheAccordion.vue";
+import TheAccordion from "@/components/TheAccordion.vue";
 // function humanize(str) {
 //   var i,
 //     frags = str.split("_");
@@ -157,7 +109,7 @@ export default {
   },
   props: ["stats"],
   components: {
-    //   TheAccordion
+    TheAccordion,
   },
   setup() {
     // mounted
