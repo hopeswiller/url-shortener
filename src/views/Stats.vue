@@ -8,10 +8,6 @@
     <TheAccordion>
       <template v-slot:header>Summary</template>
       <template v-slot:content>
-        <span><b>Name: </b>{{ _stats.info.created_by }}</span
-        ><br />
-        <span><b>Email: </b>{{ _stats.info.email }}</span
-        ><br />
         <span
           ><b>Long Version: </b>
           <a :href="_stats.info.long_url">{{ _stats.info.long_url }}</a></span
@@ -117,6 +113,12 @@ export default {
       console.log(`Component is mounted!`);
     });
   },
+
+//   { "clicks": 0, "unique_clicks": 0, "browsers": [], "countries": [], "referrers":
+// [], "platforms": [], "daily_clicks": [], "data": { "description": null,
+// "long_url": "https:\/\/weatherextension.com\/", "short_url":
+// "https:\/\/t.ly\/c55j", "created_at": "2022-01-16T19:10:36.000000Z" } }
+
   computed: {
     _stats() {
       let parsedData = JSON.parse(this.stats);
@@ -129,9 +131,7 @@ export default {
         info: {
           long_url: parsedData.data.long_url,
           short_url: parsedData.data.short_url,
-          created_at: parsedData.data.created_at,
-          created_by: parsedData.data.user.name,
-          email: parsedData.data.user.email,
+          created_at: parsedData.data.created_at
         },
       };
     },

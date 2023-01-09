@@ -64,11 +64,14 @@ import Store from "@/assets/store.js";
 
 // const { URLSearchParams } = require("url");
 
-const url = new URL("https://t.ly/api/v1/link");
-let api_key = process.env.API_TOKEN;
+let api_string = process.env.VUE_APP_API;
+api_string = api_string.replace(/\/$/, "");
+
+const url = new URL(`${api_string}/link`);
+let api_key = process.env.VUE_APP_API_TOKEN;
 let headers = {
-  "Content-Type": "application/json",
-  Accept: "application/json",
+    "Content-Type": "application/json",
+    Accept: "application/json",
 };
 
 export default {
@@ -115,14 +118,13 @@ export default {
     async shortenUrl() {
       this.processed = false;
 
-      let body = {
-        long_url: this.old_url,
-        api_token:
-          api_key ||
-          "qnZX77rpksviT5hcfs231mpnFXi5yBQtKUhjlfXsCsTI0hTyXTqQVtynM9BU",
-      };
+      let body = { long_url: this.old_url };
+      let query_params = { api_token: api_key };
 
-      fetch(`${url}/shorten`, {
+      var _url = new URL(`${url}/shorten`);
+      _url.search = new URLSearchParams(query_params).toString(); // add query params
+
+      fetch(_url, {
         method: "POST",
         headers: headers,
         body: JSON.stringify(body),
@@ -147,12 +149,9 @@ export default {
       this.processed = false;
       let body = {
         short_url: this.old_url,
-        api_token:
-          api_key ||
-          "qnZX77rpksviT5hcfs231mpnFXi5yBQtKUhjlfXsCsTI0hTyXTqQVtynM9BU",
       };
 
-      fetch(`${url}/expand`, {
+      fetch(`${url}/expand?api_token=${api_key}`, {
         method: "POST",
         headers: headers,
         body: JSON.stringify(body),
@@ -161,6 +160,7 @@ export default {
         .then((json) => {
           this.new_url = json.long_url;
           this.status = "success";
+          console.log(`new_url ${this.new_url}`);
         })
         .catch((err) => {
           console.log(`error oocured expanding url : ${err}`);
@@ -172,13 +172,10 @@ export default {
       console.log(`deleting link....`);
       this.processed = false;
       let body = {
-        short_url: this.old_url,
-        api_token:
-          api_key ||
-          "qnZX77rpksviT5hcfs231mpnFXi5yBQtKUhjlfXsCsTI0hTyXTqQVtynM9BU",
+        short_url: this.old_url
       };
 
-      fetch(url, {
+      fetch(`${url}/expand?api_token=${api_key}`, {
         method: "DELETE",
         headers: headers,
         body: JSON.stringify(body),
@@ -196,18 +193,17 @@ export default {
       this.processed = true;
     },
     async urlStats() {
-      console.log("running here ...");
-
       this.processed = false;
       let params = {
-        short_url: this.old_url,
-        api_token:
-          api_key ||
-          "qnZX77rpksviT5hcfs231mpnFXi5yBQtKUhjlfXsCsTI0hTyXTqQVtynM9BU",
+        api_token: api_key,
+        short_url: this.old_url
       };
 
       var _url = new URL(`${url}/stats`);
+      // add query params
       _url.search = new URLSearchParams(params).toString();
+
+      console.log(`url ${_url}`);
 
       fetch(_url, {
         method: "GET",

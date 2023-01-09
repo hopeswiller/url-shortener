@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+  urlshortener:
+    image: elment/urlshortener-dev
+    build:
+      context: .
+      dockerfile: ./Dockerfile.development
+      cache_from: 
+        - elment/urlshortener-dev:latest
+    environment:
+      NODE_ENV: development
+    ports:
+      - 8080:8080
